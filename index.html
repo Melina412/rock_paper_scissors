@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <form onsubmit="return false">
+          <div>
+            <!-- - number of rounds choice: radio buttons ---------------------- -->
+
+            <p>How many rounds?</p>
+            <input type="radio" name="rounds" id="fiveRounds" value="5" />
+            <label for="fiveRounds">5</label>
+
+            <input type="radio" name="rounds" id="tenRounds" value="10" />
+            <label for="tenRounds">10</label>
+
+            <input type="radio" name="rounds" id="fifteenRounds" value="15" />
+            <label for="fifteenRounds">15</label>
+
+            <input type="radio" name="rounds" id="twentyRounds" value="20" />
+            <label for="twentyRounds">20</label>
+          </div>
+
+          <!-- - user choice and computer choice output ------------------------ -->
+
+          <div>
+            <div>
+              <img src="#" alt="your choice" />
+              <img src="#" alt="computer choice" />
+            </div>
+
+            <!-- - total score output: summarized round score ------------------ -->
+
+            <div>
+              <p id="totalScoreUser"></p>
+              <p>:</p>
+              <p id="totalScoreComputer"></p>
+            </div>
+          </div>
+
+          <!-- - You/Computer win/lose ----------------------------------------- -->
+
+          <div id="roundOutput"></div>
+
+          <!-- - rock / paper / scissors --- radio buttons --------------------- -->
+
+          <div>
+            <input type="radio" name="option" id="rock" value="rock" />
+            <label for="rock">
+              <img src="./assets/img/fist.png" alt="rock button" />
+            </label>
+
+            <input type="radio" name="option" id="paper" value="paper" />
+            <label for="paper">
+              <img src="./assets/img/hand.png" alt="paper button" />
+            </label>
+
+            <input type="radio" name="option" id="scissors" value="scissors" />
+            <label for="scissors">
+              <img src="./assets/img/v.png" alt="scissors button" />
+            </label>
+          </div>
+
+          <!-- - restart -  -->
+
+          <p id="restart">restart</p>
+        </form>
+      </section>
+    </main>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
