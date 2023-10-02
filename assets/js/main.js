@@ -3,12 +3,41 @@
 //      1 - paper
 //      2 - scissors
 
+// * game variables
+
 let user_choice = null;
 let computer_choice = null;
 
+let user_score = 0;
+let computer_score = 0;
+
 // * user input
 
-let radio_buttons = document.querySelectorAll('input[name="option"]');
+// - radio buttons
+
+let radio_options = document.querySelectorAll('input[name="options"]');
+let radio_rounds = document.querySelectorAll('input[name="rounds"]');
+
+// - rounds calcutation
+
+let total_rounds = 5;
+
+radio_rounds.forEach((button) => {
+  button.addEventListener("change", () => {
+    total_rounds = Number(
+      document.querySelector('input[name="rounds"]:checked').value
+    );
+    roundOutput();
+
+    console.log({ total_rounds });
+  });
+});
+
+const roundOutput = () => {
+  document.getElementById("totalRounds").innerHTML = total_rounds;
+};
+let current_round = 1;
+console.log({ total_rounds });
 
 // * computer input
 
@@ -27,20 +56,26 @@ const randomComputerChoice = () => {
 
 // * game logic
 
-radio_buttons.forEach((button) =>
-  button.addEventListener("input", () => {
-    user_choice = document.querySelector('input[name="option"]:checked').value;
+radio_options.forEach((option) =>
+  option.addEventListener("input", () => {
+    user_choice = document.querySelector('input[name="options"]:checked').value;
     computer_choice = randomComputerChoice();
     console.log({ user_choice });
     console.log({ computer_choice });
     // show user choice at choice output
     // show computer choice at choice output
 
+    // show current and total rounds:
+    //    current round an dieser stelle auslesen!
+    document.getElementById("currentRound").innerHTML = current_round;
+    console.log({ current_round });
+
     if (user_choice === computer_choice) {
       // result: draw
       // output: it's a draw
-      // user score +1
-      // computer score +1
+      user_score++; // user score +1
+      computer_score++; // computer score +1
+      //
     } else if (
       (user_choice === "rock" && computer_choice === "scissors") ||
       (user_choice === "paper" && computer_choice === "rock") ||
@@ -48,23 +83,38 @@ radio_buttons.forEach((button) =>
     ) {
       // result: user wins
       // output: ${user-choice} beats ${computer_choice}, you win!
-      // user score +1
+      user_score++; // user score +1
+      //
     } else {
       // result: computer wins
       // output: ${computer_choice} beats ${user-choice}, computer wins!
-      // computer score +1
+      computer_score++; // computer score +1
     }
+
+    current_round++; // round +1
+
+    console.log({ current_round });
+    console.log({ total_rounds });
+    console.log({ user_score });
+    console.log({ computer_score });
+
+    // score output
+    document.getElementById("userScore").innerHTML = user_score;
+    document.getElementById("computerScore").innerHTML = computer_score;
+
     // setzt user auswahl zurück, um erneut auswahl treffen zu können
-    document.querySelector('input[name="option"]:checked').checked = false;
+    document.querySelector('input[name="options"]:checked').checked = false;
+
+    console.log(" -----END OF ROUND----- ");
   })
 );
 
 // * round result
 // a) output
-// b) round -1
+// b) total rounds and current round +1
 
-const roundOutput = (result) => {
-  document.getElementById("roundOutput").innerHTML = result;
+const resultOutput = (result) => {
+  document.getElementById("resultOutput").innerHTML = result;
 };
 
 // * restart
