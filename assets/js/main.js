@@ -65,10 +65,22 @@ radio_options.forEach((option) =>
     // show user choice at choice output
     // show computer choice at choice output
 
+    // hide round number selection
+    document.getElementById("roundsDiv").style.display = "none";
+
+    // display round number and score
+    document.querySelectorAll(".hidden").forEach((div) => {
+      div.style.display = "block";
+    });
+
     // show current and total rounds:
     //    current round an dieser stelle auslesen!
     document.getElementById("currentRound").innerHTML = current_round;
     console.log({ current_round });
+
+    // show user and computer choice
+    userChoice(user_choice);
+    computerChoice(computer_choice);
 
     if (user_choice === computer_choice) {
       // result: draw
@@ -91,7 +103,7 @@ radio_options.forEach((option) =>
       computer_score++; // computer score +1
     }
 
-    current_round++; // round +1
+    // current_round++; // round +1
 
     console.log({ current_round });
     console.log({ total_rounds });
@@ -104,10 +116,36 @@ radio_options.forEach((option) =>
 
     // setzt user auswahl zurück, um erneut auswahl treffen zu können
     document.querySelector('input[name="options"]:checked').checked = false;
-
     console.log(" -----END OF ROUND----- ");
+
+    if (current_round === total_rounds) {
+      // game over
+      // hide div game options
+      document.getElementById("optionsDiv").style.display = "none";
+      //
+      // display div end result
+      if (user_score > computer_score) {
+        endResultOutput("You win!");
+      } else if (user_score < computer_score) {
+        endResultOutput("Computer wins!");
+      } else {
+        endResultOutput("It's a draw!");
+      }
+    }
+
+    current_round++; // round +1
   })
 );
+
+// * user vs computer images
+
+const userChoice = (img) => {
+  document.getElementById("userImage").src = `./assets/img/${img}.png`;
+};
+
+const computerChoice = (img) => {
+  document.getElementById("computerImage").src = `./assets/img/${img}.png`;
+};
 
 // * round result
 // a) output
@@ -115,6 +153,12 @@ radio_options.forEach((option) =>
 
 const resultOutput = (result) => {
   document.getElementById("resultOutput").innerHTML = result;
+};
+
+// * end result
+
+const endResultOutput = (end_result) => {
+  document.getElementById("endResult").innerHTML = end_result;
 };
 
 // * restart
