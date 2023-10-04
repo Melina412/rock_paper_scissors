@@ -15,7 +15,7 @@
 
             <!-- : div nach spielbeginn ausblenden -->
             <div id="roundsDiv">
-              <p>How many rounds?</p>
+              <p>How many rounds would you like to play?</p>
               <input
                 type="radio"
                 name="rounds"
@@ -49,20 +49,24 @@
 
           <div>
             <div>
-              <p>You</p>
+              <p>Ready? Make your move.</p>
+            </div>
+            <div class="hidden">
+              <p>you</p>
               <img id="userImage" src="#" alt="your choice" />
               <p>VS.</p>
               <img id="computerImage" src="#" alt="computer choice" />
-              <p>Computer</p>
+              <p>computer</p>
             </div>
 
             <!-- - total score output: summarized round score ------------------ -->
 
             <!-- ? div ist zunächst nicht sichtbar -->
             <div class="hidden">
-              <p id="userScore">0</p>
+              <!-- <p id="userScore">0</p>
               <p>:</p>
-              <p id="computerScore">0</p>
+              <p id="computerScore">0</p> -->
+              <p id="scoreOutput"></p>
             </div>
           </div>
 
@@ -94,12 +98,15 @@
 
           <!-- ? div ist zunächst nicht sichtbar -->
           <div>
+            <p class="hidden" id="gameOver">GAME OVER</p>
             <p id="endResult"></p>
           </div>
 
           <!-- - restart -  -->
 
-          <p id="restart"><a href="./index.html">restart</a></p>
+          <div class="hidden">
+            <p id="restart"><a href="./index.html">restart</a></p>
+          </div>
         </form>
       </section>
     </main>

@@ -20,7 +20,7 @@ let radio_rounds = document.querySelectorAll('input[name="rounds"]');
 
 // - rounds calcutation
 
-let total_rounds = 5;
+let total_rounds = 5; //
 
 radio_rounds.forEach((button) => {
   button.addEventListener("change", () => {
@@ -28,8 +28,6 @@ radio_rounds.forEach((button) => {
       document.querySelector('input[name="rounds"]:checked').value
     );
     roundOutput();
-
-    console.log({ total_rounds });
   });
 });
 
@@ -84,7 +82,8 @@ radio_options.forEach((option) =>
 
     if (user_choice === computer_choice) {
       // result: draw
-      // output: it's a draw
+      resultOutput(`${user_choice} vs ${computer_choice}, it's a draw...`);
+      //
       user_score++; // user score +1
       computer_score++; // computer score +1
       //
@@ -94,25 +93,24 @@ radio_options.forEach((option) =>
       (user_choice === "scissors" && computer_choice === "paper")
     ) {
       // result: user wins
-      // output: ${user-choice} beats ${computer_choice}, you win!
+      resultOutput(`${user_choice} beats ${computer_choice}, you win!`);
+      //
       user_score++; // user score +1
       //
     } else {
       // result: computer wins
-      // output: ${computer_choice} beats ${user-choice}, computer wins!
+      resultOutput(`${computer_choice} beats ${user_choice}, computer wins!`);
+      //
       computer_score++; // computer score +1
     }
 
-    // current_round++; // round +1
-
-    console.log({ current_round });
+    // console.log({ current_round });
     console.log({ total_rounds });
     console.log({ user_score });
     console.log({ computer_score });
 
     // score output
-    document.getElementById("userScore").innerHTML = user_score;
-    document.getElementById("computerScore").innerHTML = computer_score;
+    scoreOutput(`${user_score} : ${computer_score}`);
 
     // setzt user auswahl zurück, um erneut auswahl treffen zu können
     document.querySelector('input[name="options"]:checked').checked = false;
@@ -122,22 +120,25 @@ radio_options.forEach((option) =>
       // game over
       // hide div game options
       document.getElementById("optionsDiv").style.display = "none";
+      document.getElementById("gameOver").style.display = "block";
       //
       // display div end result
       if (user_score > computer_score) {
-        endResultOutput("You win!");
+        endResultOutput("you win!");
       } else if (user_score < computer_score) {
-        endResultOutput("Computer wins!");
+        endResultOutput("computer wins!");
       } else {
-        endResultOutput("It's a draw!");
+        endResultOutput("it's a draw!");
       }
+    } else if (current_round < total_rounds) {
+      document.getElementById("gameOver").style.display = "none";
     }
 
     current_round++; // round +1
   })
 );
 
-// * user vs computer images
+// * user vs computer choice images
 
 const userChoice = (img) => {
   document.getElementById("userImage").src = `./assets/img/${img}.png`;
@@ -147,15 +148,22 @@ const computerChoice = (img) => {
   document.getElementById("computerImage").src = `./assets/img/${img}.png`;
 };
 
-// * round result
-// a) output
-// b) total rounds and current round +1
+//
+// * score output
+
+const scoreOutput = (score) => {
+  document.getElementById("scoreOutput").innerHTML = score;
+};
+
+//
+// * round result output
 
 const resultOutput = (result) => {
   document.getElementById("resultOutput").innerHTML = result;
 };
 
-// * end result
+//
+// * end result output
 
 const endResultOutput = (end_result) => {
   document.getElementById("endResult").innerHTML = end_result;
