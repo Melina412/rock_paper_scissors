@@ -103,7 +103,7 @@ radio_options.forEach((option) =>
       if (user_choice === computer_choice) {
         // result: draw
         resultOutput(
-          `${user_choice} vs. ${computer_choice}, <span>it's a draw...</span>`
+          `<p>${user_choice} vs. ${computer_choice},</p> <span>it's a draw...</span>`
         );
         //
         user_score++; // user score +1
@@ -116,7 +116,7 @@ radio_options.forEach((option) =>
       ) {
         // result: user wins
         resultOutput(
-          `${user_choice} beats ${computer_choice}, <span>you win!</span>`
+          `<p>${user_choice} beats ${computer_choice},</p> <span>you win!</span>`
         );
         //
         user_score++; // user score +1
@@ -124,7 +124,7 @@ radio_options.forEach((option) =>
       } else {
         // result: computer wins
         resultOutput(
-          `${computer_choice} beats ${user_choice}, <span>computer wins!</span>`
+          `<p>${computer_choice} beats ${user_choice},</p> <span>computer wins!</span>`
         );
         //
         computer_score++; // computer score +1

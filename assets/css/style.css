@@ -238,5 +238,78 @@ p#restart a {
     transform: translate(0) scale(1) rotate(0deg);
   }
 }
+@media screen and (max-width: 390px) {
+  main {
+    padding: 2rem 0;
+  }
+  form {
+    margin: 0 auto;
+    grid-template-rows: 10rem 30rem 18rem 6rem;
+  }
+  .rounds-section div.hidden p:first-child,
+  .rounds-section div.hidden p#roundsOutput {
+    font-size: 3rem;
+  }
+  .score-section p.hide {
+    font-size: 4rem;
+  }
+  .score-section div.hidden .flex-container {
+    height: 10rem;
+  }
+  .options-section {
+    margin: 0;
+  }
+  .options-label-style,
+  .score-section div.hidden .flex-container div.player .img-container,
+  .options-section div label {
+    width: 5rem;
+    height: 5rem;
+    padding: 0;
+  }
+  .options-section div div p:last-child {
+    margin: 1rem 0;
+  }
+  img {
+    width: 3rem;
+    margin-bottom: 0.6rem;
+  }
+  .score-section div.hidden .flex-container div.player p {
+    font-size: 3rem;
+  }
+  .score-section div.hidden .flex-container p {
+    font-size: 5rem;
+  }
+  .score-section div.hidden .flex-container {
+    width: 90vw;
+  }
+  .score-section div#resultOutput {
+    width: 75vw;
+    margin: 0 auto;
+  }
+  .score-section div#resultOutput p {
+    white-space: nowrap;
+  }
+  .score-section div#resultOutput span {
+    font-size: 4rem;
+  }
+  .game-over-section p#gameOver {
+    font-size: 4rem;
+    margin-bottom: 3rem;
+  }
+  .game-over-section p#endResult {
+    font-size: 5rem;
+  }
+  @keyframes gameOver {
+    0% {
+      transform: scaleX(0.8); /* Keine Streckung (normaler Text) */
+    }
+    50% {
+      transform: scaleX(1.5); /* Streckung um 50% zur Hälfte der Animation */
+    }
+    100% {
+      transform: scaleX(0.8); /* Zurück zur normalen Breite am Ende der Animation */
+    }
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
