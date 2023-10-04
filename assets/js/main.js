@@ -27,15 +27,29 @@ radio_rounds.forEach((button) => {
     total_rounds = Number(
       document.querySelector('input[name="rounds"]:checked').value
     );
-    roundOutput();
+    // roundOutput();
   });
 });
 
-const roundOutput = () => {
-  document.getElementById("totalRounds").innerHTML = total_rounds;
-};
+// const roundOutput = () => {
+//   document.getElementById("totalRounds").innerHTML = total_rounds;
+// };
 let current_round = 1;
 console.log({ total_rounds });
+
+// - style
+//
+// "this" bezieht sich auf den radio button, auf dem das change event stattfindet
+// geht nur mit function(){...}, [nicht mit arrow function => {...}]
+radio_rounds.forEach((button) => {
+  button.addEventListener("change", function () {
+    const label = document.querySelector(`label[for="${this.id}"]`);
+    document.querySelectorAll(".rounds-section label").forEach((label) => {
+      label.classList.remove("checked");
+    });
+    label.classList.add("checked");
+  });
+});
 
 // * computer input
 
@@ -72,8 +86,10 @@ radio_options.forEach((option) =>
     });
 
     // show current and total rounds:
-    //    current round an dieser stelle auslesen!
-    document.getElementById("currentRound").innerHTML = current_round;
+    // document.getElementById("currentRound").innerHTML = current_round;
+    // # oder:
+    roundsOutput(`${current_round} / ${total_rounds}`);
+
     console.log({ current_round });
 
     // show user and computer choice
@@ -153,6 +169,13 @@ const computerChoice = (img) => {
 
 const scoreOutput = (score) => {
   document.getElementById("scoreOutput").innerHTML = score;
+};
+
+//
+// * rounds
+
+const roundsOutput = (rounds) => {
+  document.getElementById("roundsOutput").innerHTML = rounds;
 };
 
 //

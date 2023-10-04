@@ -24,7 +24,7 @@
                 value="5"
                 checked
               />
-              <label for="fiveRounds">5</label>
+              <label for="fiveRounds" class="checked">5</label>
 
               <input type="radio" name="rounds" id="tenRounds" value="10" />
               <label for="tenRounds">10</label>
@@ -41,9 +41,10 @@
             <!-- ? div ist zunächst nicht sichtbar -->
             <div class="hidden">
               <p>Round</p>
-              <p id="currentRound">1</p>
+              <!-- <p id="currentRound">1</p>
               <p>/</p>
-              <p id="totalRounds">5</p>
+              <p id="totalRounds">5</p> -->
+              <p id="roundsOutput"></p>
             </div>
           </div>
         </section>
@@ -84,7 +85,8 @@
           <div id="optionsDiv">
             <!-- : div nach spielende ausblenden -->
             <div>
-              <p>Ready? Make your move.</p>
+              <p>Ready?</p>
+              <p>Make your move.</p>
             </div>
 
             <input type="radio" name="options" id="rock" value="rock" />
