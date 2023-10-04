@@ -8,8 +8,9 @@
   </head>
   <body>
     <main>
-      <section>
-        <form onsubmit="return false">
+      <form onsubmit="return false">
+        <!-- ! rounds section -------------------- -->
+        <section class="rounds-section">
           <div>
             <!-- - number of rounds choice: radio buttons ---------------------- -->
 
@@ -45,12 +46,13 @@
               <p id="totalRounds">5</p>
             </div>
           </div>
-          <!-- - user choice and computer choice output ------------------------ -->
+        </section>
 
+        <!-- - user choice and computer choice output ------------------------ -->
+
+        <!-- ! score section -------------------- -->
+        <section class="score-section">
           <div>
-            <div>
-              <p>Ready? Make your move.</p>
-            </div>
             <div class="hidden">
               <p>you</p>
               <img id="userImage" src="#" alt="your choice" />
@@ -70,14 +72,21 @@
             </div>
           </div>
 
-          <!-- - You/Computer win/lose (for each round)----------------------------------------- -->
+          <!-- - You/Computer win/lose (for each round)------------------------- -->
 
           <div id="resultOutput"></div>
+        </section>
 
+        <!-- ! options section -------------------- -->
+        <section class="options-section">
           <!-- - rock / paper / scissors --- radio buttons --------------------- -->
 
           <div id="optionsDiv">
             <!-- : div nach spielende ausblenden -->
+            <div>
+              <p>Ready? Make your move.</p>
+            </div>
+
             <input type="radio" name="options" id="rock" value="rock" />
             <label for="rock">
               <img src="./assets/img/rock.png" alt="rock button" />
@@ -93,7 +102,10 @@
               <img src="./assets/img/scissors.png" alt="scissors button" />
             </label>
           </div>
+        </section>
 
+        <!-- ! game over section -------------------- -->
+        <section class="game-over-section">
           <!-- - end result -------------------------------------------------- -->
 
           <!-- ? div ist zunächst nicht sichtbar -->
@@ -107,8 +119,8 @@
           <div class="hidden">
             <p id="restart"><a href="./index.html">restart</a></p>
           </div>
-        </form>
-      </section>
+        </section>
+      </form>
     </main>
     <script src="./assets/js/main.js"></script>
   </body>

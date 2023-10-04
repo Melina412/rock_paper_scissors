@@ -1,3 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: AstronBoyRegular;
+  src: url("../fonts/astron-boy.rg-regular.otf");
+}
+@font-face {
+  font-family: AstronBoyVideo;
+  src: url("../fonts/astron-boy.video-regular.otf");
+}
+@font-face {
+  font-family: AstronBoyWonder;
+  src: url("../fonts/astron-boy.wonder-regular.otf");
+}
+@font-face {
+  font-family: TekoVariable;
+  src: url("../fonts/Teko/Teko-VariableFont_wght.ttf");
+}
+html {
+  font-size: 62.5%;
+}
+
+main {
+  font-size: 5rem;
+}
+
 img {
   width: 3rem;
   height: auto;
@@ -6,3 +36,5 @@ img {
 .hidden {
   display: none;
 }
+
+/*# sourceMappingURL=style.css.map */
