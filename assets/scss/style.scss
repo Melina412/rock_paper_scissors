@@ -47,32 +47,52 @@ $abv: "AstronBoyVideo", "Courier New", Courier, monospace;
 $abw: "AstronBoyWonder", "Courier New", Courier, monospace;
 $teko: "TekoVariable", "Courier New", Courier, monospace;
 
+// text
+$tc: rgb(140, 140, 140);
+
 //
 // * global classes ------------------------------------------------------------
 
-.label-style {
-  @include size(8rem, 8rem);
+.round-label-style {
+  @include size(4.5rem, 4.5rem);
+  @include font-style($teko, 2.5rem, 0);
   display: inline-block;
   border: 1px solid #fff;
   border-radius: 50%;
   text-align: center;
-  padding: 10px;
+  padding: 6px;
+}
+
+.options-label-style {
+  @include size(10rem, 10rem);
+  display: inline-block;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  text-align: center;
+  padding: 2rem;
+  margin: 0 2rem;
 }
 
 //
 // * general style ------------------------------------------------------------
 
 html {
+  background-color: rgb(25, 25, 25);
   font-size: 62.5%;
+  //   overflow: hidden;
 }
+
 main {
   font-size: 5rem;
-  background-color: rgb(25, 25, 25);
-  color: rgb(140, 140, 140);
+  color: $tc;
+  padding: 5rem 0;
+  user-select: none;
+  // verhindert versehentliche text markierung beim
+  // mehrfachen klicken auf die radio buttons
 }
 
 img {
-  width: 3rem;
+  width: 5.5rem;
   height: auto;
 }
 
@@ -90,38 +110,226 @@ input {
 //
 // * section style -------------------------------------------------------
 
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10rem 35rem 22rem 6rem;
+}
+
+section {
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+// - rounds section -------------------------------------------------------
 .rounds-section {
   div {
-    div {
+    padding: 1rem 0;
+    p {
+      @include font-style($teko, 2rem, 0.2rem);
+      line-height: 1;
+    }
+
+    &.hidden {
+      padding: 0.5rem;
+
       p {
-        @include font-style($teko, 4rem, 0.2rem);
-      }
+        &:first-child {
+          @include font-style($abr, 4rem, 0.2rem);
+          margin-bottom: 0.2rem;
+        }
 
-      label {
-        @extend .label-style;
-      }
+        &#roundsOutput {
+          @include font-style($teko, 4rem, 0.5rem);
 
-      label.checked {
-        background-color: crimson;
+          padding: 0.2rem 0;
+        }
       }
+    }
+
+    label {
+      @extend .round-label-style;
+    }
+
+    label.checked {
+      background-color: indigo;
     }
   }
 }
 
+// - score section -------------------------------------------------------
+.score-section {
+  margin-bottom: 3rem;
+  p.hide {
+    @include font-style($abw, 8rem, 0.2rem);
+    margin: 20rem 0 5rem 0;
+  }
+  div.hidden {
+    .flex-container {
+      @include size(70vw, 20rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      margin: 2rem auto 0 auto;
+
+      div.player {
+        @include size(25rem, auto);
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 2rem;
+
+        p {
+          @include font-style($abr, 5rem, 0); // you/computer
+        }
+
+        .img-container {
+          @extend .options-label-style;
+
+          img {
+            @include font-style($teko, 1rem, 0);
+          }
+        }
+      }
+      p {
+        @include font-style($abw, 8rem, 0); // VS.
+      }
+    }
+    p#scoreOutput {
+      @include font-style($teko, 4rem, 0.5rem);
+    }
+  }
+  div#resultOutput {
+    @include font-style($abr, 3rem, 0.2rem);
+
+    span {
+      @include font-style($abw, 5rem, 0);
+    }
+  }
+}
+
+// - options section -------------------------------------------------------
 .options-section {
+  margin: 2rem 0 0 0;
+  position: relative;
   div {
     div {
       p {
-        &:first-child {
-          @include font-style($abw, 4rem, 0.2rem);
-        }
+        // &.hide {
+        //   @include font-style($abw, 8rem, 0.2rem);
+        //   margin: 20rem 0 6.2rem 0;
+        // }
         &:last-child {
           @include font-style($abr, 4rem, 0.2rem);
+          margin: 3rem 0 1rem 0;
         }
       }
     }
     label {
-      @extend .label-style;
+      @extend .options-label-style;
+      background-color: indigo;
+    }
+
+    p#scoreOutput {
+      @include font-style($teko, 4rem, 0);
     }
   }
 }
+
+// - game over section -------------------------------------------------------
+
+.game-over-section {
+  p#gameOver {
+    @include font-style($abv, 10rem, 0.5rem);
+    // ! wenn gewonnen blau wenn verloren rot
+    // !animation
+    animation: gameOver 6s infinite;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  p#endResult {
+    @include font-style($abr, 8rem, 0);
+    line-height: 0.5;
+    padding-bottom: 2.8rem;
+  }
+}
+
+p#restart {
+  @include font-style($abr, 3rem, 0.5rem);
+  text-align: center;
+  padding: 1.2rem 0;
+  color: purple;
+  text-shadow: -0.5px -0.5px 0 $tc, 0.5px -0.5px 0 $tc, -0.5px 0.5px 0 $tc,
+    0.5px 0.5px 0 $tc;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+//
+// * keyframes -------------------------------------------------------
+
+@keyframes gameOver {
+  0% {
+    transform: scaleX(0.8); /* Keine Streckung (normaler Text) */
+  }
+  50% {
+    transform: scaleX(1.8); /* Streckung um 50% zur Hälfte der Animation */
+  }
+  100% {
+    transform: scaleX(
+      0.8
+    ); /* Zurück zur normalen Breite am Ende der Animation */
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate(-10%, -10%) scale(0.5) rotate(-90deg);
+  }
+  50% {
+    transform: translate(10%, 10%) scale(1.5) rotate(180deg);
+  }
+  75% {
+    // transform: translate(10%, 10%) scale(1.5) rotate(90deg);
+  }
+  100% {
+    transform: translate(0) scale(1) rotate(0deg);
+  }
+}
+//
+// ----------------------------------------------------------
+// emoji animation idee (nicht fertig)
+
+// .emojis-container {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100vw;
+//     height: 100vh;
+//     pointer-events: none;
+//     z-index: 9999;
+//   }
+//   .emoji {
+//     position: absolute;
+//     font-size: 54px;
+//     animation: fly linear infinite;
+//     white-space: nowrap;
+//   }
+
+//   @keyframes fly {
+//     0% {
+//       transform: translate(-50%, -50%) rotate(0deg);
+//       opacity: 1;
+//     }
+//     100% {
+//       transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y)))
+//         rotate(360deg);
+//       opacity: 0;
+//     }
+//   }

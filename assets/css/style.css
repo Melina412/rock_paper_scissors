@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -20,28 +21,44 @@
   font-family: TekoVariable;
   src: url("../fonts/Teko/Teko-VariableFont_wght.ttf");
 }
-.label-style, .options-section div label, .rounds-section div div label {
-  width: 8rem;
-  height: 8rem;
+.round-label-style, .rounds-section div label {
+  width: 4.5rem;
+  height: 4.5rem;
+  font-family: "TekoVariable", "Courier New", Courier, monospace;
+  font-size: 2.5rem;
+  letter-spacing: 0;
   display: inline-block;
   border: 1px solid #fff;
   border-radius: 50%;
   text-align: center;
-  padding: 10px;
+  padding: 6px;
+}
+
+.options-label-style, .options-section div label, .score-section div.hidden .flex-container div.player .img-container {
+  width: 10rem;
+  height: 10rem;
+  display: inline-block;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  text-align: center;
+  padding: 2rem;
+  margin: 0 2rem;
 }
 
 html {
+  background-color: rgb(25, 25, 25);
   font-size: 62.5%;
 }
 
 main {
   font-size: 5rem;
-  background-color: rgb(25, 25, 25);
   color: rgb(140, 140, 140);
+  padding: 5rem 0;
+  user-select: none;
 }
 
 img {
-  width: 3rem;
+  width: 5.5rem;
   height: auto;
 }
 
@@ -53,24 +70,173 @@ input {
   display: none;
 }
 
-.rounds-section div div p {
-  font-family: "TekoVariable", "Courier New", Courier, monospace;
-  font-size: 4rem;
-  letter-spacing: 0.2rem;
-}
-.rounds-section div div label.checked {
-  background-color: crimson;
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10rem 35rem 22rem 6rem;
 }
 
-.options-section div div p:first-child {
-  font-family: "AstronBoyWonder", "Courier New", Courier, monospace;
+section {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.rounds-section div {
+  padding: 1rem 0;
+}
+.rounds-section div p {
+  font-family: "TekoVariable", "Courier New", Courier, monospace;
+  font-size: 2rem;
+  letter-spacing: 0.2rem;
+  line-height: 1;
+}
+.rounds-section div.hidden {
+  padding: 0.5rem;
+}
+.rounds-section div.hidden p:first-child {
+  font-family: "AstronBoyRegular", "Courier New", Courier, monospace;
   font-size: 4rem;
   letter-spacing: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.rounds-section div.hidden p#roundsOutput {
+  font-family: "TekoVariable", "Courier New", Courier, monospace;
+  font-size: 4rem;
+  letter-spacing: 0.5rem;
+  padding: 0.2rem 0;
+}
+.rounds-section div label.checked {
+  background-color: indigo;
+}
+
+.score-section {
+  margin-bottom: 3rem;
+}
+.score-section p.hide {
+  font-family: "AstronBoyWonder", "Courier New", Courier, monospace;
+  font-size: 8rem;
+  letter-spacing: 0.2rem;
+  margin: 20rem 0 5rem 0;
+}
+.score-section div.hidden .flex-container {
+  width: 70vw;
+  height: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 2rem auto 0 auto;
+}
+.score-section div.hidden .flex-container div.player {
+  width: 25rem;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 2rem;
+}
+.score-section div.hidden .flex-container div.player p {
+  font-family: "AstronBoyRegular", "Courier New", Courier, monospace;
+  font-size: 5rem;
+  letter-spacing: 0;
+}
+.score-section div.hidden .flex-container div.player .img-container img {
+  font-family: "TekoVariable", "Courier New", Courier, monospace;
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+.score-section div.hidden .flex-container p {
+  font-family: "AstronBoyWonder", "Courier New", Courier, monospace;
+  font-size: 8rem;
+  letter-spacing: 0;
+}
+.score-section div.hidden p#scoreOutput {
+  font-family: "TekoVariable", "Courier New", Courier, monospace;
+  font-size: 4rem;
+  letter-spacing: 0.5rem;
+}
+.score-section div#resultOutput {
+  font-family: "AstronBoyRegular", "Courier New", Courier, monospace;
+  font-size: 3rem;
+  letter-spacing: 0.2rem;
+}
+.score-section div#resultOutput span {
+  font-family: "AstronBoyWonder", "Courier New", Courier, monospace;
+  font-size: 5rem;
+  letter-spacing: 0;
+}
+
+.options-section {
+  margin: 2rem 0 0 0;
+  position: relative;
 }
 .options-section div div p:last-child {
   font-family: "AstronBoyRegular", "Courier New", Courier, monospace;
   font-size: 4rem;
   letter-spacing: 0.2rem;
+  margin: 3rem 0 1rem 0;
+}
+.options-section div label {
+  background-color: indigo;
+}
+.options-section div p#scoreOutput {
+  font-family: "TekoVariable", "Courier New", Courier, monospace;
+  font-size: 4rem;
+  letter-spacing: 0;
+}
+
+.game-over-section p#gameOver {
+  font-family: "AstronBoyVideo", "Courier New", Courier, monospace;
+  font-size: 10rem;
+  letter-spacing: 0.5rem;
+  animation: gameOver 6s infinite;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.game-over-section p#endResult {
+  font-family: "AstronBoyRegular", "Courier New", Courier, monospace;
+  font-size: 8rem;
+  letter-spacing: 0;
+  line-height: 0.5;
+  padding-bottom: 2.8rem;
+}
+
+p#restart {
+  font-family: "AstronBoyRegular", "Courier New", Courier, monospace;
+  font-size: 3rem;
+  letter-spacing: 0.5rem;
+  text-align: center;
+  padding: 1.2rem 0;
+  color: purple;
+  text-shadow: -0.5px -0.5px 0 rgb(140, 140, 140), 0.5px -0.5px 0 rgb(140, 140, 140), -0.5px 0.5px 0 rgb(140, 140, 140), 0.5px 0.5px 0 rgb(140, 140, 140);
+}
+p#restart a {
+  text-decoration: none;
+}
+
+@keyframes gameOver {
+  0% {
+    transform: scaleX(0.8); /* Keine Streckung (normaler Text) */
+  }
+  50% {
+    transform: scaleX(1.8); /* Streckung um 50% zur Hälfte der Animation */
+  }
+  100% {
+    transform: scaleX(0.8); /* Zurück zur normalen Breite am Ende der Animation */
+  }
+}
+@keyframes shake {
+  0% {
+    transform: translate(0) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate(-10%, -10%) scale(0.5) rotate(-90deg);
+  }
+  50% {
+    transform: translate(10%, 10%) scale(1.5) rotate(180deg);
+  }
+  100% {
+    transform: translate(0) scale(1) rotate(0deg);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

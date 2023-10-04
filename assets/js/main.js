@@ -78,7 +78,9 @@ radio_options.forEach((option) =>
     // show computer choice at choice output
 
     // hide round number selection
-    document.getElementById("roundsDiv").style.display = "none";
+    document.querySelectorAll(".hide").forEach((element) => {
+      element.style.display = "none";
+    });
 
     // display round number and score
     document.querySelectorAll(".hidden").forEach((div) => {
@@ -96,56 +98,74 @@ radio_options.forEach((option) =>
     userChoice(user_choice);
     computerChoice(computer_choice);
 
-    if (user_choice === computer_choice) {
-      // result: draw
-      resultOutput(`${user_choice} vs ${computer_choice}, it's a draw...`);
-      //
-      user_score++; // user score +1
-      computer_score++; // computer score +1
-      //
-    } else if (
-      (user_choice === "rock" && computer_choice === "scissors") ||
-      (user_choice === "paper" && computer_choice === "rock") ||
-      (user_choice === "scissors" && computer_choice === "paper")
-    ) {
-      // result: user wins
-      resultOutput(`${user_choice} beats ${computer_choice}, you win!`);
-      //
-      user_score++; // user score +1
-      //
-    } else {
-      // result: computer wins
-      resultOutput(`${computer_choice} beats ${user_choice}, computer wins!`);
-      //
-      computer_score++; // computer score +1
-    }
+    setTimeout(() => {
+      // updates score & round result after animation is finished
+      if (user_choice === computer_choice) {
+        // result: draw
+        resultOutput(
+          `${user_choice} vs. ${computer_choice}, <span>it's a draw...</span>`
+        );
+        //
+        user_score++; // user score +1
+        computer_score++; // computer score +1
+        //
+      } else if (
+        (user_choice === "rock" && computer_choice === "scissors") ||
+        (user_choice === "paper" && computer_choice === "rock") ||
+        (user_choice === "scissors" && computer_choice === "paper")
+      ) {
+        // result: user wins
+        resultOutput(
+          `${user_choice} beats ${computer_choice}, <span>you win!</span>`
+        );
+        //
+        user_score++; // user score +1
+        //
+      } else {
+        // result: computer wins
+        resultOutput(
+          `${computer_choice} beats ${user_choice}, <span>computer wins!</span>`
+        );
+        //
+        computer_score++; // computer score +1
+      }
 
-    // console.log({ current_round });
-    console.log({ total_rounds });
-    console.log({ user_score });
-    console.log({ computer_score });
+      // console.log({ current_round });
+      console.log({ total_rounds });
+      console.log({ user_score });
+      console.log({ computer_score });
 
-    // score output
-    scoreOutput(`${user_score} : ${computer_score}`);
+      // score output
+      scoreOutput(`${user_score} : ${computer_score}`);
 
-    // setzt user auswahl zurück, um erneut auswahl treffen zu können
-    document.querySelector('input[name="options"]:checked').checked = false;
-    console.log(" -----END OF ROUND----- ");
+      // setzt user auswahl zurück, um erneut auswahl treffen zu können
+      document.querySelector('input[name="options"]:checked').checked = false;
+      console.log(" -----END OF ROUND----- ");
+    }, 900);
 
     if (current_round === total_rounds) {
       // game over
       // hide div game options
-      document.getElementById("optionsDiv").style.display = "none";
-      document.getElementById("gameOver").style.display = "block";
-      //
-      // display div end result
-      if (user_score > computer_score) {
-        endResultOutput("you win!");
-      } else if (user_score < computer_score) {
-        endResultOutput("computer wins!");
-      } else {
-        endResultOutput("it's a draw!");
-      }
+      setTimeout(() => {
+        document.getElementById("optionsDiv").style.display = "none";
+
+        const game_over_text = document.getElementById("gameOver");
+        game_over_text.style.display = "block";
+        //
+        //
+        //
+        // display div end result
+        if (user_score > computer_score) {
+          endResultOutput("you win!");
+          game_over_text.style.color = "teal";
+        } else if (user_score < computer_score) {
+          endResultOutput("computer wins!");
+          game_over_text.style.color = "crimson";
+        } else {
+          endResultOutput("it's a draw!");
+          game_over_text.style.color = "ghostwhite";
+        }
+      }, 900);
     } else if (current_round < total_rounds) {
       document.getElementById("gameOver").style.display = "none";
     }
@@ -192,4 +212,60 @@ const endResultOutput = (end_result) => {
   document.getElementById("endResult").innerHTML = end_result;
 };
 
-// * restart
+// * animation
+
+const shaking_images = document.querySelectorAll(".img-container");
+
+radio_options.forEach((button) => {
+  button.addEventListener("change", () => {
+    shaking_images.forEach((img) => {
+      img.style.animation = "none";
+      // animation zunächst zurücksetzten
+      setTimeout(() => {
+        // setTimeout: starten der Animation immer nach 10 ms
+        img.style.animation = "shake 0.3s ease-in-out 3";
+      }, 10);
+    });
+  });
+});
+
+// emoji animation idee (nicht fertig)
+
+// const emojis = ["😢", "😞", "😭"];
+// const container = document.querySelector(".emojis-container");
+// let emojiCount = 0;
+// const maxEmojis = 10;
+
+// function createEmoji() {
+//   if (emojiCount >= maxEmojis) {
+//     return; // Beende die Funktion, wenn die maximale Anzahl erreicht ist
+//   }
+//   const emoji = document.createElement("div");
+//   emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+//   emoji.className = "emoji";
+
+//   // Zufällige Position zwischen 0 und 100vw für horizontalen Raum
+//   let x = Math.random() * 100;
+
+//   // Zufällige Position zwischen 0 und 100vh für vertikalen Raum
+//   let y = Math.random() * 100;
+
+//   emoji.style.left = `${x}vw`;
+//   emoji.style.top = `${y}vh`;
+
+//   container.appendChild(emoji);
+
+//   emoji.addEventListener("animationiteration", () => {
+//     emoji.remove();
+//     emojiCount--;
+//   });
+
+//   // Starte die Animation nach einer kurzen Verzögerung, um sicherzustellen, dass das Emoji gerendert wurde
+
+//   setTimeout(() => {
+//     emoji.style.animation = "fly linear infinite";
+//   }, 10);
+// }
+
+// loop
+// setInterval(createEmoji, 500);

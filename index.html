@@ -11,67 +11,72 @@
       <form onsubmit="return false">
         <!-- ! rounds section -------------------- -->
         <section class="rounds-section">
-          <div>
-            <!-- - number of rounds choice: radio buttons ---------------------- -->
+          <!-- <div> -->
+          <!-- - number of rounds choice: radio buttons ---------------------- -->
 
-            <!-- : div nach spielbeginn ausblenden -->
-            <div id="roundsDiv">
-              <p>How many rounds would you like to play?</p>
-              <input
-                type="radio"
-                name="rounds"
-                id="fiveRounds"
-                value="5"
-                checked
-              />
-              <label for="fiveRounds" class="checked">5</label>
+          <!-- : div nach spielbeginn ausblenden -->
+          <div id="roundsDiv" class="hide">
+            <p>how many rounds would you like to play?</p>
+            <input
+              type="radio"
+              name="rounds"
+              id="fiveRounds"
+              value="5"
+              checked
+            />
+            <label for="fiveRounds" class="checked">5</label>
 
-              <input type="radio" name="rounds" id="tenRounds" value="10" />
-              <label for="tenRounds">10</label>
+            <input type="radio" name="rounds" id="tenRounds" value="10" />
+            <label for="tenRounds">10</label>
 
-              <input type="radio" name="rounds" id="fifteenRounds" value="15" />
-              <label for="fifteenRounds">15</label>
+            <input type="radio" name="rounds" id="fifteenRounds" value="15" />
+            <label for="fifteenRounds">15</label>
 
-              <input type="radio" name="rounds" id="twentyRounds" value="20" />
-              <label for="twentyRounds">20</label>
-            </div>
-
-            <!-- - number of rounds output ------------------------------------- -->
-
-            <!-- ? div ist zunächst nicht sichtbar -->
-            <div class="hidden">
-              <p>Round</p>
-              <!-- <p id="currentRound">1</p>
-              <p>/</p>
-              <p id="totalRounds">5</p> -->
-              <p id="roundsOutput"></p>
-            </div>
+            <input type="radio" name="rounds" id="twentyRounds" value="20" />
+            <label for="twentyRounds">20</label>
           </div>
+
+          <!-- - number of rounds output ------------------------------------- -->
+
+          <!-- ? div ist zunächst nicht sichtbar -->
+          <div class="hidden">
+            <p>round</p>
+            <p id="roundsOutput"></p>
+          </div>
+          <!-- </div> -->
         </section>
 
         <!-- - user choice and computer choice output ------------------------ -->
 
         <!-- ! score section -------------------- -->
         <section class="score-section">
-          <div>
-            <div class="hidden">
-              <p>you</p>
-              <img id="userImage" src="#" alt="your choice" />
+          <p class="hide">are you ready?</p>
+          <!-- <div> -->
+          <div class="hidden">
+            <div class="flex-container">
+              <div class="player">
+                <p>you</p>
+                <div class="img-container">
+                  <img id="userImage" src="#" alt="your choice" />
+                </div>
+              </div>
               <p>VS.</p>
-              <img id="computerImage" src="#" alt="computer choice" />
-              <p>computer</p>
-            </div>
-
-            <!-- - total score output: summarized round score ------------------ -->
-
-            <!-- ? div ist zunächst nicht sichtbar -->
-            <div class="hidden">
-              <!-- <p id="userScore">0</p>
-              <p>:</p>
-              <p id="computerScore">0</p> -->
-              <p id="scoreOutput"></p>
+              <div class="player">
+                <p>computer</p>
+                <div class="img-container">
+                  <img id="computerImage" src="#" alt="computer choice" />
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- - total score output: summarized round score ------------------ -->
+
+          <!-- ? div ist zunächst nicht sichtbar -->
+          <div class="hidden">
+            <p id="scoreOutput"></p>
+          </div>
+          <!-- </div> -->
 
           <!-- - You/Computer win/lose (for each round)------------------------- -->
 
@@ -85,8 +90,8 @@
           <div id="optionsDiv">
             <!-- : div nach spielende ausblenden -->
             <div>
-              <p>Ready?</p>
-              <p>Make your move.</p>
+              <!-- <p class="hide">are you ready?</p> -->
+              <p>make your move.</p>
             </div>
 
             <input type="radio" name="options" id="rock" value="rock" />
@@ -104,26 +109,28 @@
               <img src="./assets/img/scissors.png" alt="scissors button" />
             </label>
           </div>
+
+          <!-- ! game over section -------------------- -->
+          <section class="game-over-section">
+            <!-- - end result -------------------------------------------------- -->
+
+            <!-- ? div ist zunächst nicht sichtbar -->
+            <div class="hidden">
+              <p id="gameOver">GAME OVER</p>
+              <p id="endResult"></p>
+            </div>
+          </section>
         </section>
 
-        <!-- ! game over section -------------------- -->
-        <section class="game-over-section">
-          <!-- - end result -------------------------------------------------- -->
+        <!-- - restart -  -->
 
-          <!-- ? div ist zunächst nicht sichtbar -->
-          <div>
-            <p class="hidden" id="gameOver">GAME OVER</p>
-            <p id="endResult"></p>
-          </div>
-
-          <!-- - restart -  -->
-
-          <div class="hidden">
-            <p id="restart"><a href="./index.html">restart</a></p>
-          </div>
-        </section>
+        <div class="hidden">
+          <p id="restart"><a href="./index.html">restart</a></p>
+        </div>
       </form>
+      <div class="emojis-container"></div>
     </main>
+
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
